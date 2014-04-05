@@ -131,8 +131,9 @@ func readInto(config interface{}, fset *token.FileSet, file *token.File, src []b
 				}
 			}
 			err := set(config, sect, sectsub, n, blank, v)
-			if err != nil {
-				return err
+			if err != nil { // unknown data can be safely skipped.
+				fmt.Println("SKIPPED:", err)
+				continue
 			}
 		default:
 			if sect == "" {
